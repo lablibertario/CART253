@@ -85,6 +85,35 @@ void drawStatic() {
   }
 }
 
+/* CHANGED: when the ball is in the top left corner, the static turns green, when it's in the top right, it's red, when it's in 
+   the bottom left, it turns yellow an in the bottom right quadrant, it turns blue. 
+   Done using this series of nested if/else loops. */
+void quadrantColorChange() {
+  // checks if the ball is in the bottom half of the screen
+  if (ballY > height/2) {
+    // checks if the ball is also in left part of the screen
+    if (ballX < width/2) {
+      //sets color to yellow
+      staticColor = color(200,200,0);
+    } else {
+      // if in the bottom half of the screen but NOT on the left side (i.e. the right), set color to yellow
+      staticColor = color(0,0,200);
+    }
+    // if NOT in the bottom half of the screen (i.e. the top half)...
+  } else {
+    // checks if ball is also in the left part of the screen
+    if(ballX < width/2) {
+      // set color to green
+      staticColor = color(0,200,0);
+      // if NOT in the left part of the screen (i.e. the right)
+    } else {
+      // set color to red
+      staticColor = color(200,0,0);
+    }
+  }
+}
+/* end of CHANGE */
+
 /* this function makes it possible for the paddle to move, and prevents the paddle from going off of the side of the screen */
 void updatePaddle() {
   paddleX += paddleVX;  
@@ -99,6 +128,9 @@ void updateBall() {
   handleBallHitPaddle();
   handleBallHitWall();
   handleBallOffBottom();
+  /* CHANGE: added this function to be called here */
+  quadrantColorChange();
+  /* end of CHANGE */
 }
 
 /* this function draws the paddle shape with the initialized values */
