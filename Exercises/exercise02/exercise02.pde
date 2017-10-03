@@ -113,6 +113,9 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {
     ballY = paddleY - paddleHeight/2 - ballSize/2;
     ballVY = -ballVY;
+    /* CHANGED: paddle changes to a random shade of grey when hit by the ball */
+    paddleColor = color(random(255));
+    /* end of CHANGE */
   }
 }
 
@@ -177,7 +180,7 @@ void keyPressed() {
 void keyReleased() {
   /* if paddle x velocity is above zero when the keys are released, it will stop the paddle 
      by setting x velocity to 0 */
-  if (keyCode == LEFT && paddleVX < 0)
+  if (keyCode == LEFT && paddleVX < 0) {
     paddleVX = 0;
     /* same thing but for y velocity */
   } else if (keyCode == RIGHT && paddleVX > 0) {
