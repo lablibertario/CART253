@@ -72,6 +72,16 @@ void drawStatic() {
    float staticSize = random(staticSizeMin,staticSizeMax);
    fill(staticColor);
    rect(x,y,staticSize,staticSize);
+   /* CHANGED: added this if and else statement that makes the minimum and maximum pixel size of the static bigger
+      when the paddle's x position is anywhere between 100 and 540, or 100 pixels from the edges */
+     if (100 < paddleX && paddleX < 540) {
+       staticSizeMin = 4;
+       staticSizeMax = 6;
+     } else {
+       staticSizeMin = 1;
+       staticSizeMax = 3;
+     }
+   /* end of CHANGE */
   }
 }
 
@@ -186,4 +196,5 @@ void keyReleased() {
   } else if (keyCode == RIGHT && paddleVX > 0) {
     paddleVX = 0;
   }
+println(paddleX); //for debugging
 }
