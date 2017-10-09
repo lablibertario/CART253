@@ -1,3 +1,9 @@
+/* 
+this is the Bouncer file, which contains all of the properties and initializes/runs functions (methods) for every object of 
+the type Bouncer to be called from the main file.
+*/
+
+//declares the class of object Bouncer, with all of its properties initialized between the curly brackets
 class Bouncer {
   
  int x;
@@ -20,6 +26,8 @@ class Bouncer {
    fillColor = defaultColor;
  }
  
+ //this method increments the bouncer's position coordinates so it can move in a diagonal fashion
+ //it also calls handleBounce() and handleMouse() contantly so their conditional statements can activate anytime
  void update() {
    x += vx;
    y += vy;
@@ -28,6 +36,7 @@ class Bouncer {
    handleMouse();
  }
  
+ //this one makes the bouncer bounce off in another direction when it hits the edges of the canvas
  void handleBounce() {
    if (x - size/2 < 0 || x + size/2 > width) {
     vx = -vx; 
@@ -41,6 +50,7 @@ class Bouncer {
    y = constrain(y,size/2,height-size/2);
  }
  
+ //this one makes it so that when you hover over the bouncer, the color changes slightly
  void handleMouse() {
    if (dist(mouseX,mouseY,x,y) < size/2) {
     fillColor = hoverColor; 
@@ -50,6 +60,7 @@ class Bouncer {
    }
  }
  
+ //this displays the bouncer on the screen
  void draw() {
    noStroke();
    fill(fillColor);
