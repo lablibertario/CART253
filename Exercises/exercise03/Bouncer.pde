@@ -43,10 +43,18 @@ class Bouncer {
  void handleBounce() {
    if (x - size/2 < 0 || x + size/2 > width) {
     vx = -vx; 
+    /* CHANGED: added this line so that every time either bouncer hits the right or left wall, its size shrinks until it disappears.
+       after it shrinks to nothing, it starts to grow again, becoming bigger than ever before, because it passes into negative number territory
+       this affects the constrain put on the edges of the canvas, which doesn't work well when you feed it a negative number */
+    size = size - 1;
+    /* end of CHANGE */
    }
    
    if (y - size/2 < 0 || y + size/2 > height) {
      vy = -vy;
+     /* same thing as the in the above conditional statement, but with the up or down wall */
+     size = size - 1;
+     /* end of CHANGE */
    }
    
    // this constraint prevents the bouncer from going off of the side of the screen so the animation looks better
