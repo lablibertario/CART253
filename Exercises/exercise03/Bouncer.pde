@@ -9,8 +9,8 @@ class Bouncer {
  //initialized property values
  int x;
  int y;
- int vx;
- int vy;
+ float vx;
+ float vy;
  int size;
  color fillColor;
  color defaultColor;
@@ -71,6 +71,15 @@ class Bouncer {
      fillColor = defaultColor;
    }
  }
+ 
+ /* CHANGED: added this method, which adds 0.5 to the velocity and consequently throws off the entire groove of the program, making it behave erratically 
+    the speed changes, usually getting faster and then slowing down every time it is called (or the opposite), and the direction changes too, usually going in a diagonal
+    because bouncer uses a positive x velocity and bouncer2 uses a negative x velocity, their movements no longer synchronize when 0.5 is added. */
+ void distortMovement() {
+  vy = vy + 0.5;
+  vx = vy + 0.5;
+ }
+ /* end of CHANGE */
  
  //this displays the bouncer on the screen
  void draw() {

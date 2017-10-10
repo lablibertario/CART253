@@ -30,4 +30,13 @@ void draw() {
   //these access the Bouncer's draw method, not this draw function, because of the use of the object name and the dot
   bouncer.draw();
   bouncer2.draw();
+  
+  println(bouncer.vy); //for debugging
 }
+
+/* CHANGED: added this function to call distortMovement() when the mouse is clicked */
+void mouseClicked() {
+  bouncer.distortMovement();
+  bouncer2.distortMovement();
+}
+/* end of CHANGE */
