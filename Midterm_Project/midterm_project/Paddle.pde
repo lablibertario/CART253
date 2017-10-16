@@ -52,8 +52,10 @@ class Paddle {
 
   void update() {
     // Update position with velocity (to move the paddle)
-    x += vx;
-    y += vy;
+         x += vx;
+         y += vy;
+      
+
 
     // Constrain the paddle's y position to be in the window
     y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
