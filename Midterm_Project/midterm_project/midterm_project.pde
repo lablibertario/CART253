@@ -46,14 +46,21 @@ for each of the stars. create a contstellation object too
 - maybe the ball just fidgets and floats in space instead of heading towards one side, and the players have to build its
 velocity themselves somehow
 - fix the paddle movement problem in the game over state
-- maybe the bad ball will be made obvious, and will after some time has passed create an implosion that hinders the player whose side of the screen it implodes on 
-(particle implosion?)
+- maybe the bad ball will be made obvious, and will after some time has passed create an implosion that hinders the player whose side of the 
+screen it implodes on (particle implosion?)
+- maybe when the paddles move away from their initial x position they become unable to score a point because a barrier gets created at the 
+other ens, and must hit the ball from the edge after spending dime building the ball's speed
+- or instead, what if the paddles have a shield when they are at the starting x position, and lose it otherwise? might be too abuseable, 
+making the game too long and unexciting
+- small fade in/ fade out animation for the bg stars or main stars?
+- give the star an outline. it's might be kind of tough trying to manage a jittery ball against the paddles. this outline can fade in and 
+out for effect, probably
 
 1) Track and display the score (incl. the window resizing, the asterisms being drawn, but maybe don't change the limits of
 the paddles and ball yet)
 2) detect when the game is over and show who won (show the game over state)
-3) change the way the player controls the game ()
-4) change the way the ball moves ()
+3) change the way the player controls the game (build the shield, let the paddles move up until a certain area of the screen)
+4) change the way the ball moves (make it jittery, make its speed changeble, make it a circle within a circle)
 5) change the way the game looks (finish adding custom image assets, bg stars, change code to accomidate pictures)
 6) go over and add more stuff and optimize code
 */
@@ -187,8 +194,15 @@ void setup() {
   // Also pass through the two keys used to control 'up' and 'down' respectively
   // NOTE: On a mac you can run into trouble if you use keys that create that popup of
   // different accented characters in text editors (so avoid those if you're changing this)
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, '1', 'q');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, '0', 'p');
+  /* CHANGED: changed the input keys to better fit the fingers of two players who will move their paddle in four directions
+  W/I = UP
+  S/K = DOWN
+  A/J = LEFT
+  D/L = RIGHT
+  */
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's', 'a', 'd');
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k', 'j', 'l');
+  /* end of CHANGE */
 
   // Create the ball at the centre of the screen
   ball = new Ball(width/2, height/2);
@@ -253,7 +267,7 @@ void draw() {
   fill(255);
   text(pAMessage, pAMessageX, pAMessageY);
   text(pBMessage, pBMessageX, pBMessageY);
-  println(mouseX, mouseY);
+  println(ball.x, ball.y); // for debugging
   /* end of CHANGE */
 }
 

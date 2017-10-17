@@ -62,7 +62,7 @@ class Ball {
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
-    /* CHANGED: added this constrain so the ball doesn't go off the inner screen and leaves a mark on either of the scoreboards */
+    /* CHANGED: added this constrain so the ball doesn't go off the inner screen and leave a mark on either of the scoreboards */
     y = constrain(y,200 + SIZE/2,680 - SIZE/2);
     /* end of CHANGE */
   }
@@ -133,9 +133,11 @@ class Ball {
     // Set up the appearance of the ball (no stroke, a fill, and rectMode as CENTER)
     noStroke();
     fill(ballColor);
-    rectMode(CENTER);
+    /* CHANGED: changed the shape of the ball to a circle to make it match with the stars in the scoreboard */
+    ellipseMode(CENTER);
 
     // Draw the ball
-    rect(x, y, SIZE, SIZE);
+    ellipse(x, y, SIZE, SIZE);
+    /* end of change */
   }
 }
