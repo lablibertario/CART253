@@ -54,6 +54,7 @@ class Score {
       stroke(255);
       line(577,162,587,67);
       line(587,67,403,84);
+      gameOverStateA();
     }
   //
   // score tracking for player B
@@ -92,13 +93,45 @@ class Score {
       stroke(255);
       line(577,842,587,747);
       line(587,747,403,764);
-
+      gameOverStateB();
     }
   }
   
-  // nothing is being done with this yet, but i'll use it when i create the game over state
-  void displayWinMessage() {
-  
+  // this method activates once player A gets to seven points and completes their asterism
+  void gameOverStateA() {
+    // this displays the win message for player A
+    // first, we draw a square that covers up the previous message so a new one can be drawn in its place
+    fill(0);
+    noStroke();
+    rectMode(CORNER);
+    rect(30, 155, 310, 30);
+    // change the message to show that player A won, and also draw it
+    pAMessage = "Player A is the winner!";
+    // this stops everything on screen so that the players can't use any of the controls in this state
+    ball.vy = 0;
+    ball.vx = 0;
+    // this part doesn't really work actually but i'll figure out a way to get it to work later
+    leftPaddle.vy = 0;
+    rightPaddle.vy = 0;
+    
+    
+  }
+  // this state activates once player B gets to seven points and completes their asterism
+  void gameOverStateB() {
+    // this displays the win message for player B
+    // draw a square that covers up the previous message so a new one can be drawn in its place
+    fill(0);
+    noStroke();
+    rectMode(CORNER);
+    rect(30, 835, 310, 30);
+    // change the message to show that player B won, and also draw it
+    pBMessage = "Player B is the winner!";
+    // this stops everything on screen so that the players can't use any of the controls in this state
+    ball.vy = 0;
+    ball.vx = 0;
+    // again, doesn't work
+    leftPaddle.vy = 0;
+    rightPaddle.vy = 0;
   }
 }
 

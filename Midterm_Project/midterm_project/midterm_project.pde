@@ -45,6 +45,7 @@ for each of the stars. create a contstellation object too
 - draw a different set of bg stars depending on the drawn asterism
 - maybe the ball just fidgets and floats in space instead of heading towards one side, and the players have to build its
 velocity themselves somehow
+- fix the paddle movement problem in the game over state
 
 1) Track and display the score (incl. the window resizing, the asterisms being drawn, but maybe don't change the limits of
 the paddles and ball yet)
