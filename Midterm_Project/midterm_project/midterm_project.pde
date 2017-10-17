@@ -46,6 +46,8 @@ for each of the stars. create a contstellation object too
 - maybe the ball just fidgets and floats in space instead of heading towards one side, and the players have to build its
 velocity themselves somehow
 - fix the paddle movement problem in the game over state
+- maybe the bad ball will be made obvious, and will after some time has passed create an implosion that hinders the player whose side of the screen it implodes on 
+(particle implosion?)
 
 1) Track and display the score (incl. the window resizing, the asterisms being drawn, but maybe don't change the limits of
 the paddles and ball yet)
@@ -218,11 +220,13 @@ void draw() {
   ball.collide(leftPaddle);
   ball.collide(rightPaddle);
 
-  /* CHANGED:  */
+  /* CHANGED: instead of doing the same thing when the ball goes off either side of the screen, the program does some things differently
+     depending if the ball went off of the left side or right side */
   // Check if the ball has gone off the screen (on the left)
   if (ball.isOffScreenLeft()) {
     // If it has, reset the ball
     ball.reset();
+    // and increase player A's score by 1
     pAScore.playerScore++;
     pAScore.increase();
   }
@@ -230,6 +234,7 @@ void draw() {
   if (ball.isOffScreenRight()) {
     // If it has, reset the ball
     ball.reset();
+    // and increase player B's score by 1
     pBScore.playerScore++;
     pBScore.increase();
   }
