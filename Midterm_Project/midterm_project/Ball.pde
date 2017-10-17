@@ -62,6 +62,9 @@ class Ball {
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
+    /* CHANGED: added this constrain so the ball doesn't go off the inner screen and leaves a mark on either of the scoreboards */
+    y = constrain(y,200 + SIZE/2,680 - SIZE/2);
+    /* end of CHANGE */
   }
   
   // reset()
