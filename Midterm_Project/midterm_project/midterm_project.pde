@@ -217,11 +217,22 @@ void draw() {
   ball.collide(leftPaddle);
   ball.collide(rightPaddle);
 
-  // Check if the ball has gone off the screen
-  if (ball.isOffScreen()) {
+  /* CHANGED:  */
+  // Check if the ball has gone off the screen (on the left)
+  if (ball.isOffScreenLeft()) {
     // If it has, reset the ball
     ball.reset();
+    pAScore.playerScore++;
+    pAScore.increase();
   }
+    // Check if the ball has gone off the screen (on the right)
+  if (ball.isOffScreenRight()) {
+    // If it has, reset the ball
+    ball.reset();
+    pBScore.playerScore++;
+    pBScore.increase();
+  }
+  /* end of CHANGE */
 
   // Display the paddles and the ball
   leftPaddle.display();

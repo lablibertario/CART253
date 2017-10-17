@@ -85,9 +85,17 @@ class Ball {
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
   
-  boolean isOffScreen() {
-    return (x + SIZE/2 < 0 || x - SIZE/2 > width);
+  /* CHANGED: seperated isOffScreen() into left and right versions to score points to player B when the ball goes off the left
+     side of the screen and points to player A when the ball goes off of the right side of the screen
+     i know i'm not doing it the way it was described above, but this is fine for now. if i have time, i'll figure out how  to 
+     do it the other way */
+  boolean isOffScreenLeft() {
+    return (x + SIZE/2 < 0);
   }
+  boolean isOffScreenRight() {
+    return (x - SIZE/2 > width);
+  }
+  /* end of CHANGE */
 
   // collide(Paddle paddle)
   //
