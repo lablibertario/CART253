@@ -56,9 +56,10 @@ class Paddle {
          y += vy;
       
 
-
+    /* CHANGED: edited the values so the paddle stays within the edges of the inner screen instead */
     // Constrain the paddle's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
+    y = constrain(y,200 + HEIGHT/2,680 - HEIGHT/2);
+    /* end of CHANGE */
   }
 
   // display()

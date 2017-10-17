@@ -54,9 +54,11 @@ class Ball {
     // First update the location based on the velocity (so the ball moves)
     x += vx;
     y += vy;
-
-    // Check if the ball is going off the top of bottom
-    if (y - SIZE/2 < 0 || y + SIZE/2 > height) {
+    
+    /* CHANGED: edited the values so the ball bounces off the edges of the inner screen instead */
+    // Check if the ball is going off the top or bottom
+    if (y - SIZE/2 < 200 || y + SIZE/2 > 680) {
+      /* end of CHANGE */
       // If it is, then make it "bounce" by reversing its velocity
       vy = -vy;
     }
