@@ -89,7 +89,10 @@ int PADDLE_INSET = 8;
 color backgroundColor = color(0);
 
 /* CHANGED: added these variables, which serve various purposes: */
-
+// variables to store the bg image and font files
+PImage bg;
+PFont fontSmall;
+PFont fontBig;
 // variables to store the current status messages for each player.
 // they're empty to start with so no message gets displayed
 String pAMessage = "";
@@ -101,6 +104,12 @@ int pAMessageY = 180;
 int pBMessageY = 860;
 // the size of the empty asterisms' stars, also here for debugging. might also delete this one
 int emptyStarSize = 7;
+
+// player A and player B's consistent colors
+//player A is purple
+int pAColor = color(148, 45, 166);
+//player B is blue
+int pBColor = color(45, 57, 166);
 
 // Global variables for Star
 // player A's stars
@@ -136,11 +145,16 @@ Shield pBShield;
 
 void setup() {
   /* CHANGED: made some modifications to the setup, detailed below */
-  // set window size and create an inner window, which will be dark grey for now 
+  //set the font and bg image
+  bg = loadImage("Blue-Background-Stars.jpg");
+  fontSmall = loadFont("Munro-20.vlw");
+  fontBig= loadFont("Munro-25.vlw");
+  textFont(fontSmall);
+  // set window size and create an inner window
   // the inner window will be the limits of the playing field, and the other parts will be the constellation scoreboards
   size(640, 880);
   background(0);
-  fill(50);
+  fill(0);
   noStroke();
   rect(0,200,640,480);
   
@@ -167,11 +181,12 @@ void setup() {
   pAScore = new Score(0);
   pBScore = new Score(0);
   
-  // shields
-  pAShield = new Shield(color(255, 255, 0), 0, 0, 200, 680);
-  pBShield = new Shield(color(255, 0, 255), 640, 640, 200, 680);
+  // shields (note: the colors are switched in this instance because the shields are on opposite ends of the screen from the player)
+  pAShield = new Shield(pBColor, 0, 0, 200, 680);
+  pBShield = new Shield(pAColor, 640, 640, 200, 680);
   
   // draw the empty asterisms that are gonna be filled up with stars in grey, with smaller-sized circles
+  fill(50);
   ellipseMode(CENTER);
   ellipse(67, 60,emptyStarSize ,emptyStarSize);
   ellipse(184, 40, emptyStarSize, emptyStarSize);
@@ -191,7 +206,6 @@ void setup() {
   
   // label the contellations with a message indicating if it belongs to player A or B
   // done in the style of star, planet or constellation designations, hence the capitals and underscores
-  textSize(15);
   fill(100);
   text("Constellation PLA_A", 430, 30);
   text("Constellation PLA_B", 430, 715);
@@ -209,8 +223,8 @@ void setup() {
   A/J = LEFT
   D/L = RIGHT
   */
-  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's', 'a', 'd');
-  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k', 'j', 'l');
+  leftPaddle = new Paddle(PADDLE_INSET, height/2, 'w', 's', 'a', 'd', pAColor);
+  rightPaddle = new Paddle(width - PADDLE_INSET, height/2, 'i', 'k', 'j', 'l', pBColor);
   /* end of CHANGE */
 
   // Create the ball at the centre of the screen
@@ -228,10 +242,13 @@ void draw() {
   //background(backgroundColor);
   
   // redraw the inner window's bg each frame so we have animation
-   fill(50);
+   fill(0);
    noStroke();
    rectMode(CORNER);
    rect(0,200,640,480);
+   // draw the inner bg image at low opacity
+   tint(255, 56);
+   image(bg, 0, 200);
   /* end of CHANGE */
 
   // Update the paddles and ball by calling their update methods
@@ -281,7 +298,7 @@ void draw() {
   
   
   //draw the notification messages
-  textSize(20);
+  textFont(fontBig);
   fill(255);
   text(pAMessage, pAMessageX, pAMessageY);
   text(pBMessage, pBMessageX, pBMessageY);

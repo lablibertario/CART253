@@ -17,11 +17,12 @@ class Paddle {
   int y;
   int vx;
   int vy;
+  /* CHANGED: */
+  // The fill color of the paddles
+  color paddleColor;
   
-  // The fill color of the paddle
-  color paddleColor = color(255);
-  
-  /* CHANGE: added the leftKey and rightKey characters to store the key codes for x axis movement */
+  /* CHANGE: added the leftKey and rightKey characters to store the key codes for x axis movement. also added in paddleColor so the colors 
+     of the paddles can be different */
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
@@ -36,7 +37,7 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  Paddle(int _x, int _y, char _upKey, char _downKey, char _leftKey, char _rightKey) {
+  Paddle(int _x, int _y, char _upKey, char _downKey, char _leftKey, char _rightKey, color _paddleColor) {
     x = _x;
     y = _y;
     vx = 0;
@@ -46,6 +47,7 @@ class Paddle {
     downKey = _downKey;
     leftKey = _leftKey;
     rightKey = _rightKey;
+    paddleColor = _paddleColor;
     /* end of CHANGE */
   }
 

@@ -29,6 +29,11 @@ class Star {
     //i'll draw the star pulsating through this when i figure out how, probably
     ellipse(x, y, SIZE, SIZE);
   }
+  
+  // this is to draw those color stars in the bg that serve a purely aesthetic purpose
+  void DrawBgStars() {
+    //int[] bgStars
+  }
 }
 
 /* end of CHANGE */
