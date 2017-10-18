@@ -102,6 +102,7 @@ class Ball {
   // Checks whether this ball is colliding with the paddle passed as an argument
   // If it is, it makes the ball bounce away from the paddle by reversing its
   // x velocity
+  
 
   void collide(Paddle paddle) {
     // Calculate possible overlaps with the paddle side by side
@@ -124,6 +125,20 @@ class Ball {
       vx = -vx;
     }
   }
+  /* CHANGED: added this collide motive for the shield for when the ball hits it */
+  void collide(Shield shield) {
+    boolean insideLeft = (x + SIZE/2 > shield.x1 - shield.WIDTH/2);
+    boolean insideRight = (x - SIZE/2 < shield.x1 + shield.WIDTH/2);
+      // make it bounce only when the shield lines are drawn (left side of screen shield)
+    if(insideLeft && insideRight && rightPaddle.x < width - 8 && ball.x <= width/2) {
+      vx = -vx;
+    }
+      // make it bounce only when the shield lines are drawn (left side of screen shield)
+    if(insideLeft && insideRight && leftPaddle.x > 8 && ball.x >= width/2) {
+      vx = -vx;
+    }
+  }
+  /* end of CHANGE */
 
   // display()
   //

@@ -19,6 +19,7 @@ class Score {
     
   //
   // score tracking for player A
+  strokeWeight(2);
   if (pAScore.playerScore == 1) {
       star1a.display();
     }
@@ -58,6 +59,7 @@ class Score {
     }
   //
   // score tracking for player B
+  strokeWeight(2);
   if (pBScore.playerScore == 1) {
       star1b.display();
     }

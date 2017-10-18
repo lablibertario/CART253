@@ -55,6 +55,7 @@ making the game too long and unexciting
 - small fade in/ fade out animation for the bg stars or main stars?
 - give the star an outline. it's might be kind of tough trying to manage a jittery ball against the paddles. this outline can fade in and 
 out for effect, probably
+- color-code the shields with the opposite player's color
 
 1) Track and display the score (incl. the window resizing, the asterisms being drawn, but maybe don't change the limits of
 the paddles and ball yet)
@@ -123,6 +124,10 @@ Star star7b;
 // Global variables for Score
 Score pAScore;
 Score pBScore;
+
+// Global variables for Shield
+Shield pAShield;
+Shield pBShield;
 /* end of CHANGE */
 
 // setup()
@@ -139,7 +144,7 @@ void setup() {
   noStroke();
   rect(0,200,640,480);
   
-   // create the stars and the scores
+   // create the stars, the scores and the shields
   // player A's stars
   star1a = new Star(67, 60);
   star2a = new Star(184, 40);
@@ -161,6 +166,10 @@ void setup() {
   // scores
   pAScore = new Score(0);
   pBScore = new Score(0);
+  
+  // shields
+  pAShield = new Shield(color(255, 255, 0), 0, 0, 200, 680);
+  pBShield = new Shield(color(255, 0, 255), 640, 640, 200, 680);
   
   // draw the empty asterisms that are gonna be filled up with stars in grey, with smaller-sized circles
   ellipseMode(CENTER);
@@ -229,10 +238,15 @@ void draw() {
   leftPaddle.update();
   rightPaddle.update();
   ball.update();
-
-  // Check if the ball has collided with either paddle
+  
+  /* CHANGED: added call for collide method between the ball and each of the shields */
+  // Check if the ball has collided with either paddle or shield
   ball.collide(leftPaddle);
   ball.collide(rightPaddle);
+  ball.collide(pAShield);
+  ball.collide(pBShield);
+  /* end of CHANGE */
+  
 
   /* CHANGED: instead of doing the same thing when the ball goes off either side of the screen, the program does some things differently
      depending if the ball went off of the left side or right side */
@@ -258,6 +272,10 @@ void draw() {
   leftPaddle.display();
   rightPaddle.display();
   ball.display();
+  /* CHANGED: call the display motive for the shields */
+  pAShield.display();
+  pBShield.display();
+  /* end of CHANGE */
   
     
   
@@ -267,7 +285,7 @@ void draw() {
   fill(255);
   text(pAMessage, pAMessageX, pAMessageY);
   text(pBMessage, pBMessageX, pBMessageY);
-  println(ball.x, ball.y); // for debugging
+  println(leftPaddle.x); // for debugging
   /* end of CHANGE */
 }
 
@@ -286,7 +304,7 @@ void keyPressed() {
   rightPaddle.keyPressed();
   //CHANGED: this is for debugging. 
     // press a to increase player A's score, for now. obviously i'll change this to activate when once i figure out how
-    if(key == 'a') {
+    if(key == 'z') {
       pAScore.playerScore++;
       pAScore.increase();
     }
