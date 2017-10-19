@@ -4,7 +4,7 @@ initial x position to discourage the players from abusing the x movement mechani
 class Shield {
   //// star properties ////
   // thickness
-  int WIDTH = 5;
+  int WIDTH = 8;
   int HEIGHT = 480;
 
   // color

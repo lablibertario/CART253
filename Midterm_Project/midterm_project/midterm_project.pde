@@ -56,12 +56,14 @@ making the game too long and unexciting
 - give the star an outline. it's might be kind of tough trying to manage a jittery ball against the paddles. this outline can fade in and 
 out for effect, probably
 - color-code the shields with the opposite player's color
+- maybe instead of scrolling, the bg's tint could change from more purple to blue
+- maybe the star starts losing velocity as it goes and must be started up again with paddle contact
 
 1) Track and display the score (incl. the window resizing, the asterisms being drawn, but maybe don't change the limits of
 the paddles and ball yet)
 2) detect when the game is over and show who won (show the game over state)
 3) change the way the player controls the game (build the shield, let the paddles move up until a certain area of the screen)
-4) change the way the ball moves (make it jittery, make its speed changeble, make it a circle within a circle)
+4) change the way the ball moves (make it lose velocity, make it move at full speed again when hit)
 5) change the way the game looks (finish adding custom image assets, bg stars, change code to accomidate pictures)
 6) go over and add more stuff and optimize code
 */
@@ -93,6 +95,11 @@ color backgroundColor = color(0);
 PImage bg;
 PFont fontSmall;
 PFont fontBig;
+
+// variables for the bg fade color effect
+int levelOfRed = 254;
+int switcher = 1;
+
 // variables to store the current status messages for each player.
 // they're empty to start with so no message gets displayed
 String pAMessage = "";
@@ -182,11 +189,24 @@ void setup() {
   pBScore = new Score(0);
   
   // shields (note: the colors are switched in this instance because the shields are on opposite ends of the screen from the player)
-  pAShield = new Shield(pBColor, 0, 0, 200, 680);
-  pBShield = new Shield(pAColor, 640, 640, 200, 680);
+  // (also, the x and y values are offset from the corners of the inner screen so the lines' edges do't leak out into the scoreboards)
+  pAShield = new Shield(pBColor, 0, 0, 203, 677);
+  pBShield = new Shield(pAColor, 640, 640, 203, 677);
+  
+  // draw colorful stars in the background of each scoreboard at random
+  // player A's scorebard
+  fill(pAColor);
+  for(int i = 0; i < 30; i++) {
+    ellipse(random(0, 640), random(0, 200), 3, 3);
+  }
+  // player B's scorebard
+  fill(pBColor);
+  for(int i = 0; i < 30; i++) {
+    ellipse(random(0, 640), random(680, 880), 3, 3);
+  }
   
   // draw the empty asterisms that are gonna be filled up with stars in grey, with smaller-sized circles
-  fill(50);
+  fill(75);
   ellipseMode(CENTER);
   ellipse(67, 60,emptyStarSize ,emptyStarSize);
   ellipse(184, 40, emptyStarSize, emptyStarSize);
@@ -246,8 +266,10 @@ void draw() {
    noStroke();
    rectMode(CORNER);
    rect(0,200,640,480);
-   // draw the inner bg image at low opacity
-   tint(255, 56);
+   // draw the inner bg image at low opacity, and make it fade from blue to purple, then back to blue
+   if (levelOfRed == 0 || levelOfRed == 255) { switcher = -switcher; }
+   tint(levelOfRed, 50, 255, 126);
+   levelOfRed += switcher;
    image(bg, 0, 200);
   /* end of CHANGE */
 
@@ -267,22 +289,25 @@ void draw() {
 
   /* CHANGED: instead of doing the same thing when the ball goes off either side of the screen, the program does some things differently
      depending if the ball went off of the left side or right side */
-  // Check if the ball has gone off the screen (on the left)
-  if (ball.isOffScreenLeft()) {
+     
+  // Check if the ball has gone off the screen (on the right)
+  if (ball.isOffScreenRight()) {
     // If it has, reset the ball
     ball.reset();
     // and increase player A's score by 1
     pAScore.playerScore++;
     pAScore.increase();
   }
-    // Check if the ball has gone off the screen (on the right)
-  if (ball.isOffScreenRight()) {
+     
+  // Check if the ball has gone off the screen (on the left)
+  if (ball.isOffScreenLeft()) {
     // If it has, reset the ball
     ball.reset();
     // and increase player B's score by 1
     pBScore.playerScore++;
     pBScore.increase();
   }
+
   /* end of CHANGE */
 
   // Display the paddles and the ball

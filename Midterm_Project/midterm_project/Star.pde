@@ -31,9 +31,7 @@ class Star {
   }
   
   // this is to draw those color stars in the bg that serve a purely aesthetic purpose
-  void DrawBgStars() {
-    //int[] bgStars
-  }
+  
 }
 
 /* end of CHANGE */
