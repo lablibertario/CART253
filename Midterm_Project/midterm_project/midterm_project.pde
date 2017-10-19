@@ -267,7 +267,9 @@ void draw() {
    rectMode(CORNER);
    rect(0,200,640,480);
    // draw the inner bg image at low opacity, and make it fade from blue to purple, then back to blue
-   if (levelOfRed == 0 || levelOfRed == 255) { switcher = -switcher; }
+   if (levelOfRed == 0 || levelOfRed == 255) { 
+     switcher = -switcher; 
+   }
    tint(levelOfRed, 50, 255, 126);
    levelOfRed += switcher;
    image(bg, 0, 200);
@@ -327,7 +329,7 @@ void draw() {
   fill(255);
   text(pAMessage, pAMessageX, pAMessageY);
   text(pBMessage, pBMessageX, pBMessageY);
-  println(leftPaddle.x); // for debugging
+  //println(ball.speed); // for debugging
   /* end of CHANGE */
 }
 

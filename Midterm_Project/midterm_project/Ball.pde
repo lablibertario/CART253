@@ -8,8 +8,14 @@ class Ball {
   /////////////// Properties ///////////////
 
   // Default values for speed and size
-  int SPEED = 5;
+  /* CHANGED: turned the speed into a value to be changed as the program runs, so all instances of "SPEED" have been changed to "speed". 
+     the ball now decreases in speed every time it hits a paddle, until the speed reaches 1, at which point it starts to gain speed instead
+     until it reaches 10, where it will start to go down again (this is what the speedSwitcher value i added is for)
+     */
+  int speed = 5;
   int SIZE = 16;
+  int speedSwitcher = 1;
+  /* end of CHANGE */
 
   // The location of the ball
   int x;
@@ -37,8 +43,8 @@ class Ball {
   Ball(int _x, int _y) {
     x = _x;
     y = _y;
-    vx = SPEED;
-    vy = SPEED;
+    vx = speed;
+    vy = speed;
   }
 
 
@@ -53,7 +59,7 @@ class Ball {
   void update() {
     // First update the location based on the velocity (so the ball moves)
     x += vx;
-    y += vy;
+    y += vy;   
     
     /* CHANGED: edited the values so the ball bounces off the edges of the inner screen instead */
     // Check if the ball is going off the top or bottom
@@ -111,6 +117,8 @@ class Ball {
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
     
+    
+    
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
@@ -123,6 +131,25 @@ class Ball {
       }
       // And make it bounce
       vx = -vx;
+      /* CHANGED: and increase/decrease its speed by 1 */
+      if (speed == 1 || speed == 10) { speedSwitcher = -speedSwitcher; }
+      speed += speedSwitcher; 
+        
+    // with this addition, the ball's velocity values will change to the same as the speed
+      if(vx > 0) {
+        vx = speed;
+      }
+      if(vy > 0) {
+        vy = speed;
+      }
+      if(vx < 0) {
+        vx = -speed;
+      }
+      if(vy < 0) {
+        vy = -speed;
+      } 
+        /* end of CHANGE */
+        println(ball.speed, speedSwitcher); // for debugging
     }
   }
   /* CHANGED: added this collide motive for the shield for when the ball hits it */
@@ -153,6 +180,6 @@ class Ball {
 
     // Draw the ball
     ellipse(x, y, SIZE, SIZE);
-    /* end of change */
+    /* end of CHANGE */
   }
 }
