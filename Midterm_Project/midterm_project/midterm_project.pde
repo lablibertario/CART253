@@ -1,83 +1,25 @@
+//*** we take all the telescopes                                     //
+//      and we turn them inside out                                  //
+//        and we point them away from the big sky                    //
+//          put your right eye right up to the glass, now            //
+//             and here we'll find the constellation of the heart ***// 
+
 /* -------------------------------------- ****SPACE*PONG**** -------------------------------------- //
 This is a space-themed game of Pong.
 - Objective: complete your asterism by getting the pong ball across the other player's edge of the
 screen as many times as it is needed to complete the picture. each time you score a point, one (1) 
 star will be added to your constellation.
-- The Big Dipper takes seven (7) stars to complete
-[insert more instructions and info here]
+- You can move up and down just as you can in any regular game of pong, and you can also move right
+and left, up to the middle of the screen. beware that if you stray from your edge of the screen at 
+any moment, a shield will appear on the other side of the screen, and you won't be able to score a
+point through there unless you return to the edge where you started
+- every time you or the other player hits the ball with the paddle, it will of course bounce back,
+but it will also increase or decrease in speed, so watch out. try to come up with a strategy to win
+by examining the speed pattern
+- The Big Dipper takes seven (7) stars to complete. that means you need 7 points to win
+
+Godspeed.
 // ------------------------------------------------------------------------------------------------ */
-
-/////// this massive block of comments will be deleted in the final commit. for now i'm keeping it for convenience. ///////
-/* 
-IDEAS/TO DO:
-- add a space bg that's not too distracting. maybe it could scroll slowly?
-- the window will be seperated into 3 parts: top: constellation of player A, middle: the game, bottom: constellation of 
-player A
-- make it clear which constellation belongs to which player. maybe with some text or some color
-- perhaps there will be smaller bg stars in the player's color
-- if you have time, add a color select option.
-- black hole or particle explosion mechanic
-- multi-ball mechanic in the shape of a spiral galaxy
-- draw image for the game in the center only to distinguish from other bgs
-- make the size of the canvas divisible by 3 to get a properly split window
-- the score could be shown merely with the progress of the completion of the asterism
-- an animation when a new star is added to the asterism. what will this look like? circle where star is gets bigger and 
-changes color? pulse effect?
-- use custom font. possible types: decorative (but legible), pixel?; slab serif (hmm); sans serif (but not boring); no old 
-style, modern or cursive
-- sound?
-- add more than one type of constellation if you have time
-- what could the paddles be in this case? what about the ball?
-- game is over when: one player completes the asterism? sure, let's go with that, but add some other things on top of it to 
-give it more complexity
-- some of the time, the stars added to the asterism will aid or hinder the player in some way. should these change the ball
-color to warn the players of this before it? 
-- a star added to an asterism may destroy itself and become a black hole. when this happens, one or more stars my be sucked 
-into the hole, wrecking some of the player's progress
-- there should be a status message in each player's window when something special happens
-- the game over state: the stars and paddle of the winner glow in unison while the other player's paddle and stars become 
-dim, and text appears on screen with the option to play again
-- if you add more contellations, reuse the stars and just change their x and y positions in a method and ceate starX/starY
-for each of the stars. create a contstellation object too
-- maybe make the messages their own object
-- disable controls in the game over state
-- the asterism should have a grey,smaller outline already drawn to let the players know how many stars it needs
-- draw a different set of bg stars depending on the drawn asterism
-- maybe the ball just fidgets and floats in space instead of heading towards one side, and the players have to build its
-velocity themselves somehow
-- fix the paddle movement problem in the game over state
-- maybe the bad ball will be made obvious, and will after some time has passed create an implosion that hinders the player whose side of the 
-screen it implodes on (particle implosion?)
-- maybe when the paddles move away from their initial x position they become unable to score a point because a barrier gets created at the 
-other ens, and must hit the ball from the edge after spending dime building the ball's speed
-- or instead, what if the paddles have a shield when they are at the starting x position, and lose it otherwise? might be too abuseable, 
-making the game too long and unexciting
-- small fade in/ fade out animation for the bg stars or main stars?
-- give the star an outline. it's might be kind of tough trying to manage a jittery ball against the paddles. this outline can fade in and 
-out for effect, probably
-- color-code the shields with the opposite player's color
-- maybe instead of scrolling, the bg's tint could change from more purple to blue
-- maybe the star starts losing velocity as it goes and must be started up again with paddle contact
-
-1) Track and display the score (incl. the window resizing, the asterisms being drawn, but maybe don't change the limits of
-the paddles and ball yet)
-2) detect when the game is over and show who won (show the game over state)
-3) change the way the player controls the game (build the shield, let the paddles move up until a certain area of the screen)
-4) change the way the ball moves (make it lose velocity, make it move at full speed again when hit)
-5) change the way the game looks (finish adding custom image assets, bg stars, change code to accomidate pictures)
-6) go over and add more stuff and optimize code
-*/
-
-// Pong
-//
-// A simple version of Pong using object-oriented programming.
-// Allows to people to bounce a ball back and forth between
-// two paddles that they control.
-//
-// No scoring. (Yet!)
-// No score display. (Yet!)
-// Pretty ugly. (Now!)
-// Only two paddles. (So far!)
 
 // Global variables for the paddles and the ball
 Paddle leftPaddle;
