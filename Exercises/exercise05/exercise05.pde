@@ -10,6 +10,7 @@ Ideas, yadda yadda yadda:
 - change the shape of the waves with mouse input
 - instead of being animated as the sketch goes on, the waves start off fully animated and change as the mouse position
 is changed. the tan wave will probably just stay the same, though
+- nevermind... just stretch the width of the wave a little bit, i guess
 */
 
 /* BASE CODE: oscillation code taken from slides to be modified */
@@ -31,6 +32,8 @@ float tanMul = 650;
 void setup() {
   /* CHANGED: made the window size bigger so i can better see the paths of the waves over time */
   size(1500,800);
+  //for debugging
+  frameRate(60);
   /* end of CHANGE */
   background(0);
   fill(255);
@@ -38,13 +41,16 @@ void setup() {
 
 void draw() {
   /* CHANGED: created one wave of each type (sin, cos and tan) and gave each their own y value so
-     they can mark their own path.
+     they can mark their own path. also, move the mouse's x position to the far right of the screen
+     to stretch the width of the wave by one level
       */
   //sin wave 
   fill(sin);
   stroke(sin);
   float ySin = 150 + (sin(theta) * sinMul);
   ellipse(x,ySin,5,5);
+  // gives either 0 or 1. 0 is normal and 1 is stretched
+  x = x + mouseX/800; 
   //cos wave
   fill(cos);
   stroke(cos);
@@ -58,7 +64,7 @@ void draw() {
   x++;
   theta += 0.05;
   // for debugging
-  println(tan(theta));   
+  println(mouseX/800);   
 }
 /* end of CHANGE */
 /* end of BASE CODE */
