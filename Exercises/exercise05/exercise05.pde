@@ -49,8 +49,9 @@ void draw() {
   stroke(sin);
   float ySin = 150 + (sin(theta) * sinMul);
   ellipse(x,ySin,5,5);
-  // gives either 0 or 1. 0 is normal and 1 is stretched
-  x = x + mouseX/800; 
+  // gives a number as low as 0, and can go up to at least 14. 0 is normal and any more than that 
+  // is stretched and higer the number is, the more the wave stretches
+  x = x + mouseX/100; 
   //cos wave
   fill(cos);
   stroke(cos);
@@ -64,7 +65,7 @@ void draw() {
   x++;
   theta += 0.05;
   // for debugging
-  println(mouseX/800);   
+  println(mouseX/100);   
 }
 /* end of CHANGE */
 /* end of BASE CODE */
