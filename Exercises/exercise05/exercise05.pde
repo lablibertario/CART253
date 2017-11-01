@@ -8,11 +8,25 @@ Ideas, yadda yadda yadda:
 - change of plans: even when i set the values for sin to fixed values the problem persists, so i'll only
   use sin/cos/tan
 - change the shape of the waves with mouse input
+- instead of being animated as the sketch goes on, the waves start off fully animated and change as the mouse position
+is changed. the tan wave will probably just stay the same, though
 */
 
 /* BASE CODE: oscillation code taken from slides to be modified */
 float theta = 0;
 int x = 0;
+/* CHANGED: added color variables to help destinguish the different wave types from one another
+   also, added variables for each wave's multiplier number to more easily control their sizes */
+// colors
+color sin = (#25E8CF); // cyan
+color cos = (#6CE825); // lime
+color tan = (#E8BE25); // tan (heh)
+
+// multipliers
+float sinMul = 150;
+float cosMul = 150;
+float tanMul = 650;
+/* end of CHANGE */
 
 void setup() {
   /* CHANGED: made the window size bigger so i can better see the paths of the waves over time */
@@ -24,30 +38,23 @@ void setup() {
 
 void draw() {
   /* CHANGED: created one wave of each type (sin, cos and tan) and gave each their own y value so
-     they can mark their own path. also, added variables for each of them 
-     also, added color variables to help destinguish the different wave types from one another
-     also also, added variables for each wave's multiplier number to more easily control their sizes */
-  //sin wave
-  color sin = (#25E8CF); // cyan
-  float sinMul = 150;
+     they can mark their own path.
+      */
+  //sin wave 
   fill(sin);
   stroke(sin);
   float ySin = 150 + (sin(theta) * sinMul);
-  ellipse(x,ySin,10,10);
+  ellipse(x,ySin,5,5);
   //cos wave
-  color cos = (#6CE825); // lime
-  float cosMul = 150;
   fill(cos);
   stroke(cos);
   float yCos = 550 + (cos(theta) * cosMul);
-  ellipse(x,yCos,10,10);
+  ellipse(x,yCos,5,5);
   //tan wave
-  color tan = (#E8BE25); // tan (heh)
-  float tanMul = 650;
   fill(tan);
   stroke(tan);
   float yTan = 650 + (tan(theta) * tanMul);
-  ellipse(x,yTan,10,10);
+  ellipse(x,yTan,5,5);
   x++;
   theta += 0.05;
   // for debugging
