@@ -18,6 +18,10 @@ import processing.video.*;
 // The capture object for reading from the webcam
 Capture video;
 
+/* CHANGED: initialize the variables for the image(s) */
+PImage pixelFriend;
+/* end of CHANGE */
+
 // A PVector allows us to store an x and y location in a single object
 // When we create it we give it the starting x and y (which I'm setting to -1, -1
 // as a default value)
@@ -33,11 +37,15 @@ Bouncer[] bouncers = new Bouncer[10];
 void setup() {
   size(640, 480);
 
+  /* CHANGED: load the image of the pixel character */
+  pixelFriend = loadImage("tiny-friend.png");
+  /* end of CHANGE */
+
   // Our old friend the for-loop used to go through the length of an
   // array adding new objects to it (Bouncers in this case)
   for (int i = 0; i < bouncers.length; i++) {
     // Each Bouncer just starts with random values 
-    bouncers[i] = new Bouncer(random(0,width),random(0,height),random(-10,10),random(-10,10),random(20,50),color(random(255)));
+    bouncers[i] = new Bouncer(random(0,width),random(0,height),random(-10,10),random(-10,10),random(20,50),color(random(255),random(255),random(255)));
   }
   
   // Start up the webcam
@@ -66,12 +74,10 @@ void draw() {
    bouncers[i].update();
    bouncers[i].display();
   }
-  
   // For now we just draw a crappy ellipse at the brightest pixel
-  fill(#ff0000);
-  stroke(#ffff00);
-  strokeWeight(10);
-  ellipse(brightestPixel.x,brightestPixel.y,20,20);
+  /* CHANGED: instead of a crappy ellipse a small pixel character gets drawn at the brightest pixel */ 
+  image(pixelFriend, brightestPixel.x,brightestPixel.y);
+  /* end of CHANGE */
 }
 
 // handleVideoInput
