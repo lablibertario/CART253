@@ -1,3 +1,13 @@
+/* Ideas:
+- something involving the import of images. maybe i could do simple pixel art?
+- something that involves changing the colors of pixels
+- a sprite that i import in will have the colors of its pixels changed when the bouncers touch it
+- perhaps i'll change which pixel it attaches to? maybe the bluest pixel
+- if i end up keeping all of the bouncers the same color, mybe i can change them to pixel art as well
+- maybe one of them will change color because why not?
+
+*/
+
 // Exercise 06
 //
 // Using the webcam as input to play with Bouncers.
