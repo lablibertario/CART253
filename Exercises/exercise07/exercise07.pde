@@ -19,6 +19,8 @@ SoundFile jingle;
 int lineY = 200;
 // x variable for line position
 int lineX = 0;
+// starting rate for the jingle (normal speed)
+float jingleRate = 1;
 
 void setup() {
   size(800,400);
@@ -29,31 +31,34 @@ void setup() {
 }
 
 void draw() {  
-  // nothing yet
+  // set the jingle's rate to a new rate, if the jingleRate variable is modified
+  jingle.rate(jingleRate);
 }
 
 
 // draw the lines while playing the sound file at the same time
 void keyPressed() {
-  // press the DOWN key and draw a line going down
+  // press the DOWN key and draw a line going down and horizontally
   if(keyCode == DOWN) {
     lineY += 10;
     lineX += 20;
     // to make the line segments connect to each other, begin the line at the spot that previous one ended
     line(lineX - 20, lineY - 10, lineX, lineY);
+    // decrease the sample rate by 0.1
+    jingleRate -= 0.1;
     // play the sound file
     jingle.play();
   }
-  // press the UP key and draw a line going up
+  // press the UP key and draw a line going up and horizontally
     if(keyCode == UP) {
     lineY -= 10;
     lineX += 20;
-    // same as two lines above
+    // these are the same as in the previous if statement, only the rate is increased by 0.1 instead of decreased
+    jingleRate += 0.1;
     line(lineX - 20, lineY + 10, lineX, lineY);
-    // play the sound file
     jingle.play();
   }
   // for debugging
   println(lineX, lineY);
-  println(height);
+  println(jingleRate);
 }
