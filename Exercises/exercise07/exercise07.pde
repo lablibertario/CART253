@@ -21,21 +21,19 @@ int lineY = 200;
 int lineX = 0;
 
 void setup() {
-  size(400,400);
+  size(800,400);
   // create the sound file
   jingle = new SoundFile(this, "BGM_023.mp3");
+  // volume set to half because it's kind of loud on my end
+  jingle.amp(0.5);
 }
 
 void draw() {  
   // nothing yet
 }
 
-// for now, play the sound file when the mouse is clicked (it doesn't always work though? i guess it's just buggy)
-void mouseClicked() {
-  jingle.play();
-}
 
-// draw the lines that will help indicate something that i'm going to work in next
+// draw the lines while playing the sound file at the same time
 void keyPressed() {
   // press the DOWN key and draw a line going down
   if(keyCode == DOWN) {
@@ -43,6 +41,8 @@ void keyPressed() {
     lineX += 20;
     // to make the line segments connect to each other, begin the line at the spot that previous one ended
     line(lineX - 20, lineY - 10, lineX, lineY);
+    // play the sound file
+    jingle.play();
   }
   // press the UP key and draw a line going up
     if(keyCode == UP) {
@@ -50,6 +50,8 @@ void keyPressed() {
     lineX += 20;
     // same as two lines above
     line(lineX - 20, lineY + 10, lineX, lineY);
+    // play the sound file
+    jingle.play();
   }
   // for debugging
   println(lineX, lineY);
