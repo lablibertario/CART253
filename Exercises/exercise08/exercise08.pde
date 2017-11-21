@@ -8,6 +8,21 @@ the corner of the window to indicate when the interactor would have been locked 
 a story branch. if you'll remember, i said i would start with 3, so i'll aim for that
 
 mouse input is still the main mechanic in this
+
+// just some text to be added later. i'm writing it down now so i don't forget:
+
+Pretty, isn't it? 
+
+Wow, not even going to wait until i finish talking, are you? then fine, don't let me BORE you
+with this...
+
+[text turns white, bg turns angry color] I didn't say you were allowed to block me out with 
+them! Don't you have any respect?
+
+Oooh, what are you up to? Looks neat.
+
+[upon unveiling text hidden as the same color as bg ] Ooh, look at that! look at what you 
+uncovered!
 */
 
 /// initialize variables
@@ -26,14 +41,30 @@ int textY2 = 80;
 int textAlpha2 = 0;
 String text2 = "Then, consider the following:";
 
+// initialize circles
+Circle circle1;
+Circle circle2;
+Circle circle3;
+Circle circle4;
+Circle circle5;
+
 void setup() {
   // size and bg color
   size(640,480);
   background(255);
+  
+  // create the circles with their parameters
+  // self-reminder: fill, alpha
+  circle1 = new Circle(0, 255);
+  circle2 = new Circle(0, 255);
+  circle3 = new Circle(0, 255);
+  circle4 = new Circle(0, 255);
+  circle5 = new Circle(0, 255);
+  
 }
 
 void draw() {
-  // fade the intro text in (larger text)
+  // first, fade the intro text in (larger text)
   if(textAlpha1 < 255) {
     background(255);
     textSize(20);
@@ -41,7 +72,7 @@ void draw() {
     text(text1, textX1, textY1);
     textAlpha1 += 5;   
   }
-  // fade the intro text in (smaller text) while still drawing the prevous line of text
+  // second, fade the intro text in (smaller text) while still drawing the prevous line of text
   if(textAlpha1 >= 255 && textAlpha2 < 255) {
     background(255);
     textSize(20);
@@ -52,14 +83,33 @@ void draw() {
     text(text2, textX2, textY2);
     textAlpha2 += 5;
   }
+  // third, draw some things to interact with. these are boring for now, but the way they look
+  // and the way they will be interacted with will be spiced up later
+  if (textAlpha2 >= 255) {
+    noStroke();
+    circle1.display();
+    circle2.display();
+    circle3.display();
+    circle4.display();
+    circle5.display();
+  }
+  
     // for debugging
+    /*point(200,200);
+    point(200,450);
+    point(600,200);
+    point(600,450);*/
     println(textAlpha1);
 }
 
+  /// starting from after the text has faded in, the interactor can begin affecting things
+  // ...through clicking
 void mouseClicked() {
-  //
+  // change the color of the circles
+  // (that goes here)
 }
-
+  // ...through pressing
 void mousePressed() {
-  //
+  // drag the circles around
+  // (that goes here too)
 }
