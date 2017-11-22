@@ -53,6 +53,17 @@ Circle circle5;
 // initialize variable for color swapping
 int switchNum = 1;
 
+//** in the final version, each story branch will have its own function that will put it in
+// its own state, but for the sake of this prototype, when the program fulfills a condition
+// that would lead to one of these states, this function is run.
+// all it does is stop all movement and draw a yellow square in the corner. it is just to
+// point out when these branch locks would happen
+void branchLock() {
+  fill(255,230,0);
+  rect(5,5, 20,20);
+  frameRate(0);
+}
+
 void setup() {
   // size and bg color
   size(640,480);
@@ -60,7 +71,7 @@ void setup() {
   
   // create the circles with their parameters
   // self-reminder: fill, alpha
-  circle1 = new Circle(0, 255);
+  circle1 = new Circle(100, 255);
   circle2 = new Circle(0, 255);
   circle3 = new Circle(0, 255);
   circle4 = new Circle(0, 255);
@@ -104,16 +115,25 @@ void draw() {
     circle3.display();
     circle4.display();
     circle5.display();
-
+  
+  // bringing a circle to the message text will lock you into a story branch:
+  if(circle1.x < 300 && circle1.y < 100){
+    background(255);
+    fill(255,0,0);
+    text("Wow, not even going to wait until i finish talking, are you?\nthen fine, don't let me BORE you with this...", textX1, textY1);
+    branchLock();
   }
+}
   
     // for debugging
-    /*point(200,200);
-    point(200,450);
-    point(600,200);
-    point(600,450);*/
+    point(50,40);
+    point(50,100);
+    point(300,40);
+    point(300,100);
     println(circle1.x);
 }
+
+
 
   /// starting from after the text has faded in, the interactor can begin affecting things
   // ...through clicking
