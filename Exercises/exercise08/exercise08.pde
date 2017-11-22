@@ -50,6 +50,9 @@ Circle circle3;
 Circle circle4;
 Circle circle5;
 
+// initialize variable for color swapping
+int switchNum = 1;
+
 void setup() {
   // size and bg color
   size(640,480);
@@ -90,6 +93,7 @@ void draw() {
   // interacted with will be spiced up later
   if (textAlpha2 >= 255) {
     background(255);
+    fill(0);
     textSize(20);
     text(text1, textX1, textY1);
     textSize(15);
@@ -114,8 +118,43 @@ void draw() {
   /// starting from after the text has faded in, the interactor can begin affecting things
   // ...through clicking
 void mouseClicked() {
-  // change the color of the circles
-  // (that goes here)
+  // change the color of the circles, only when 
+    // circle 1
+  if (mouseX >= circle1.x - circle1.size/2 && mouseX <= circle1.x + circle1.size/2) {
+    if (mouseY >= circle1.y - circle1.size/2 && mouseY <= circle1.y + circle1.size/2) {
+        switchNum++;
+        circle1.colorSwap();
+    }
+  }
+    // circle 2
+  if (mouseX >= circle2.x - circle2.size/2 && mouseX <= circle2.x + circle2.size/2) {
+    if (mouseY >= circle2.y - circle2.size/2 && mouseY <= circle2.y + circle2.size/2) {
+        switchNum++;
+        circle2.colorSwap();
+    }
+  }
+    // circle 3
+  if (mouseX >= circle3.x - circle3.size/2 && mouseX <= circle3.x + circle3.size/2) {
+    if (mouseY >= circle3.y - circle3.size/2 && mouseY <= circle3.y + circle3.size/2) {
+        switchNum++;
+        circle3.colorSwap();
+    }
+  }
+    // circle 4
+  if (mouseX >= circle4.x - circle4.size/2 && mouseX <= circle4.x + circle4.size/2) {
+    if (mouseY >= circle4.y - circle4.size/2 && mouseY <= circle4.y + circle4.size/2) {
+        switchNum++;
+        circle4.colorSwap();
+    }
+  }
+    // circle 5
+  if (mouseX >= circle5.x - circle5.size/2 && mouseX <= circle5.x + circle5.size/2) {
+    if (mouseY >= circle5.y - circle5.size/2 && mouseY <= circle5.y + circle5.size/2) {
+        switchNum++;
+        circle5.colorSwap();
+    }
+  }
+
 }
   // ...through dragging
 void mouseDragged() {

@@ -15,8 +15,28 @@ class Circle {
 
   // displays the circles
   void display() {
-      fill(fill, alpha);
-      ellipse(x,y,size,size);
+    fill(fill, alpha);
+    ellipse(x,y,size,size);
+  }
+  
+  // cycles through the colors black, green and red
+  void colorSwap() {
+    // switch back to black after clicking on a red circle by setting the switch variable
+    // back to 1
+    if(switchNum > 3){
+      switchNum = 1;
+    }
+    switch(switchNum) {
+      case 1: // black
+        fill = color(#000000);
+        break;
+      case 2: // green
+        fill = color(#1C5F20);
+        break;
+      case 3: // red
+        fill = color(#D30000);
+        break;
+    }
   }
 }
 
