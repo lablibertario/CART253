@@ -23,6 +23,8 @@ Oooh, what are you up to? Looks neat.
 
 [upon unveiling text hidden as the same color as bg ] Ooh, look at that! look at what you 
 uncovered!
+
+nope, not this time! no obstructing text for you!
 */
 
 /// initialize variables
@@ -83,15 +85,22 @@ void draw() {
     text(text2, textX2, textY2);
     textAlpha2 += 5;
   }
-  // third, draw some things to interact with. these are boring for now, but the way they look
-  // and the way they will be interacted with will be spiced up later
+  // third, draw some circles to interact with, while the text from before remains in the 
+  // picture. these circles are boring for now, but the way they look and the way they will be 
+  // interacted with will be spiced up later
   if (textAlpha2 >= 255) {
+    background(255);
+    textSize(20);
+    text(text1, textX1, textY1);
+    textSize(15);
+    text(text2, textX2, textY2);
     noStroke();
     circle1.display();
     circle2.display();
     circle3.display();
     circle4.display();
     circle5.display();
+
   }
   
     // for debugging
@@ -99,7 +108,7 @@ void draw() {
     point(200,450);
     point(600,200);
     point(600,450);*/
-    println(textAlpha1);
+    println(circle1.x);
 }
 
   /// starting from after the text has faded in, the interactor can begin affecting things
@@ -108,8 +117,42 @@ void mouseClicked() {
   // change the color of the circles
   // (that goes here)
 }
-  // ...through pressing
-void mousePressed() {
-  // drag the circles around
-  // (that goes here too)
+  // ...through dragging
+void mouseDragged() {
+  // drag the circles around, but only when the cursor is inside the circle
+  // circle 1
+  if (mouseX >= circle1.x - circle1.size/2 && mouseX <= circle1.x + circle1.size/2) {
+    if (mouseY >= circle1.y - circle1.size/2 && mouseY <= circle1.y + circle1.size/2) {
+      circle1.x = mouseX;
+      circle1.y = mouseY;
+    }
+  }
+    // circle 2
+  if (mouseX >= circle2.x - circle2.size/2 && mouseX <= circle2.x + circle2.size/2) {
+    if (mouseY >= circle2.y - circle2.size/2 && mouseY <= circle2.y + circle2.size/2) {
+      circle2.x = mouseX;
+      circle2.y = mouseY;
+    }
+  }
+    // circle 3
+  if (mouseX >= circle3.x - circle3.size/2 && mouseX <= circle3.x + circle3.size/2) {
+    if (mouseY >= circle3.y - circle3.size/2 && mouseY <= circle3.y + circle3.size/2) {
+      circle3.x = mouseX;
+      circle3.y = mouseY;
+    }
+  }
+    // circle 4
+  if (mouseX >= circle4.x - circle4.size/2 && mouseX <= circle4.x + circle4.size/2) {
+    if (mouseY >= circle4.y - circle4.size/2 && mouseY <= circle4.y + circle4.size/2) {
+      circle4.x = mouseX;
+      circle4.y = mouseY;
+    }
+  }
+    // circle 5
+  if (mouseX >= circle5.x - circle5.size/2 && mouseX <= circle5.x + circle5.size/2) {
+    if (mouseY >= circle5.y - circle5.size/2 && mouseY <= circle5.y + circle5.size/2) {
+      circle5.x = mouseX;
+      circle5.y = mouseY;
+    }
+  }
 }
